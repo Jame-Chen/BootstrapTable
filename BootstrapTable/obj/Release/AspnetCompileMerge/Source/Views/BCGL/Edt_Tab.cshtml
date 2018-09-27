@@ -1,0 +1,116 @@
+﻿
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head id="MyHead">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link id="easyuiTheme" href="@Url.Content("~/Res/easyui/themes/default/easyui.css")" rel="stylesheet" type="text/css" />
+    @Styles.Render("~/ContentTjd/css")
+    @Scripts.Render("~/tjd/jquery")
+    @Scripts.Render("~/tjd/easyui")
+    <style type="text/css">
+        .combo
+        {
+            font-family: 微软雅黑,新宋体;
+            height: 24px;
+            width: 210px;
+            border: 1px solid #CCC;
+        }
+        .easyui-tabs div
+        {
+            overflow:hidden;
+        }
+    </style>
+
+</head>
+<body>
+    @using Common
+    @using PSDDProject.Models
+
+    @*<div style="padding:5px;"><a href="/BCGL/Index?mark=@ViewData["markold"]" class="easyui-linkbutton" data-options="iconCls:'icon-back'">返回</a></div>*@
+    <div class="easyui-tabs" fit="true" id="tt">
+        <div title="基本信息" id="jbxx" style="padding: 0px">
+            <iframe id="TJD_info" scrolling="auto" frameborder="0" src="" style="width: 100%;height: 100%;"></iframe>
+        </div>
+        <div title="养护信息" style="padding: 0px">
+            <iframe id="TJD_yh" scrolling="auto" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+        </div>
+        <div title="保险信息" style="padding: 0px">
+            <iframe id="TJD_bx" scrolling="auto" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+        </div>
+        <div title="试车信息" style="padding: 0px">
+            <iframe id="TJD_sc" scrolling="auto" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+        </div>
+        <div title="年检信息" style="padding: 0px">
+            <iframe id="TJD_nj" scrolling="auto" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+        </div>
+    </div>
+<input type="hidden" id="S_PT_ID" value="@ViewData["S_PT_ID"]" />
+
+    <script type="text/javascript">
+        var url = "";
+        $(function () {
+            if ($("#TJD_info").attr("src") == null || $("#TJD_info").attr("src") == "") {
+                url = encodeURI("/BCGL/Edt?flag=@ViewData["flag"]&userID=@ViewData["userID"]&S_PT_ID=" + "@ViewData["S_PT_ID"]" + "&markOld=@ViewData["markold"]");
+                $("#TJD_info").attr("src", url);
+            }
+        })
+        $('#tt').tabs({
+            //点击后再加载，并且只加载一次
+            onSelect: function (title) {
+                if (title == "基本信息") {
+                    if ($("#TJD_info").attr("src") == null || $("#TJD_info").attr("src") == "")
+                        url =encodeURI( "/BCGL/Edt?flag=@ViewData["flag"]&userID=@ViewData["userID"]&S_PT_ID=" + "@ViewData["S_PT_ID"]" + "&markOld=@ViewData["markold"]");
+                    $("#TJD_info").attr("src", url);
+                }
+                else if (title == "养护信息") {
+                    if ($("#TJD_yh").attr("src") == null || $("#TJD_yh").attr("src") == "")
+                        if ($("#S_PT_ID").val() != undefined && $("#S_PT_ID").val() != "") {
+                            $("#TJD_yh").attr("src",  encodeURI("/YANGHU/Index?mark=@ViewData["markold"]&S_PT_ID=" + $("#S_PT_ID").val()));
+                        } else {
+                            alert("请先选择一条泵车信息!");
+                            $("#tt").tabs("select", "基本信息");
+                            return false;
+                        }
+                }
+                else if (title == "保险信息") {
+                    if ($("#TJD_bx").attr("src") == null || $("#TJD_bx").attr("src") == "")
+                        if ($("#S_PT_ID").val() != undefined && $("#S_PT_ID").val() != "") {
+                            $("#TJD_bx").attr("src",  encodeURI("/BAOXIAN/Index?mark=@ViewData["markold"]&S_PT_ID=" + $("#S_PT_ID").val()));
+                        } else {
+                            alert("请先选择一条泵车信息!");
+                            $("#tt").tabs("select", "基本信息");
+                            return false;
+                        }
+                }
+                else if (title == "试车信息") {
+                    if ($("#TJD_sc").attr("src") == null || $("#TJD_sc").attr("src") == "")
+                        if ($("#S_PT_ID").val() != undefined && $("#S_PT_ID").val() != "") {
+                            $("#TJD_sc").attr("src",  encodeURI("/SHICHE/Index?mark=@ViewData["markold"]&S_PT_ID=" + $("#S_PT_ID").val()));
+                        } else {
+                            alert("请先选择一条泵车信息!");
+                            $("#tt").tabs("select", "基本信息");
+                            return false;
+                        }
+                }
+                else if (title == "年检信息") {
+                    if ($("#TJD_nj").attr("src") == null || $("#TJD_nj").attr("src") == "")
+                        if ($("#S_PT_ID").val() != undefined && $("#S_PT_ID").val() != "") {
+                            $("#TJD_nj").attr("src",  encodeURI("/NIANJIAN/Index?mark=@ViewData["markold"]&S_PT_ID=" + $("#S_PT_ID").val()));
+                        } else {
+                            alert("请先选择一条泵车信息!");
+                            $("#tt").tabs("select", "基本信息");
+                            return false;
+                        }
+
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\bin\Release\BLL.dll.config
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\bin\Release\BLL.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\bin\Release\BLL.pdb
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\bin\Release\DAL.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\bin\Release\EntityFramework.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\bin\Release\DAL.pdb
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\bin\Release\EntityFramework.xml
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\obj\Release\BLL.csprojResolveAssemblyReference.cache
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\obj\Release\BLL.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\BLL\obj\Release\BLL.pdb

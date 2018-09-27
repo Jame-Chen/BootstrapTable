@@ -1,0 +1,9 @@
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\bin\Release\DAL.dll.config
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\bin\Release\DAL.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\bin\Release\DAL.pdb
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\bin\Release\EntityFramework.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\bin\Release\EntityFramework.xml
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\bin\Release\zh-Hans\EntityFramework.resources.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\obj\Release\DAL.csprojResolveAssemblyReference.cache
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\obj\Release\DAL.dll
+D:\我的文档\Visual Studio 2012\Projects\BootstrapTable\DAL\obj\Release\DAL.pdb

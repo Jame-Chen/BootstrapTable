@@ -1,0 +1,340 @@
+﻿
+@model DAL.T_MANAGEUNIT
+
+
+@{
+    Layout = "~/Views/Shared/Create.cshtml";
+}
+
+
+
+@using Common
+@using PSDDProject.Models
+
+@using System.IO
+@section CurentPlace {
+
+    创建 泵车基础信息
+
+}
+
+<style type="text/css">
+    textarea {
+        width: 676px;
+        height: 70px;
+        margin: 0;
+    }
+
+    .editor-label {
+        width: 147px;
+        padding: 7px 6px 7px 0px;
+        /*margin: 0;*/
+        background-color: rgb(245, 245, 245);
+        border: 1px solid #D3D3D3;
+        margin: 0px -1px -1px 0px;
+        font-weight: bold;
+    }
+
+    .editor-field {
+        width: 264px;
+        padding: 7px 0px 7px 6px;
+        /*margin: 0;*/
+        border: 1px solid #D3D3D3;
+        margin: 0px -1px -1px 0px;
+    }
+
+    .text-box {
+        width: 200px;
+    }
+
+    .editor-field select {
+        width: 205px;
+    }
+
+    .editor-width {
+        width: 676px;
+    }
+
+    .editor-width681 {
+        width: 689px;
+        /*overflow: hidden;*/
+        height: auto;
+        min-height: 24px;
+    }
+
+    .webuploader-pick {
+        width: 65px;
+    }
+
+    .images {
+        border: 1px solid #888;
+        padding: 3px;
+    }
+
+    .photo {
+        height: 75px;
+    }
+
+    .text-box {
+        height: 23px;
+        line-height: 23px;
+        margin-top: 0px;
+    }
+</style>
+<fieldset>
+    <legend>
+        <input id="createBut" class="a2 f2" type="submit" value="保存" />
+        @{
+            if (ViewData["flag"] == "zc")//在册页面的添加
+            {
+               <input class="a2 f2" type="button" onclick="BackList()" value="返回" /> 
+            }             
+        }
+        
+    </legend>
+    <div class="bigdiv">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.S_QX)：
+        </div>
+        <div class="editor-field">
+          
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.QXFW)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.QXFW)<span style="color:red">&nbsp;*</span>
+            @Html.ValidationMessageFor(model => model.QXFW)
+        </div>
+        
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CZ)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.CZ)
+            @Html.ValidationMessageFor(model => model.CZ)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.GSDH)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.GSDH)
+            @Html.ValidationMessageFor(model => model.GSDH)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FZR)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FZR)<span style="color:red">&nbsp;*</span>
+            @Html.ValidationMessageFor(model => model.FZR)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FZRSJ)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FZRSJ)<span style="color:red">&nbsp;*</span>
+            @Html.ValidationMessageFor(model => model.FZRSJ)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ZW)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ZW)
+            @Html.ValidationMessageFor(model => model.ZW)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LXR)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LXR)
+            @Html.ValidationMessageFor(model => model.LXR)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LXDH)：
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LXDH)
+            @Html.ValidationMessageFor(model => model.LXDH)
+        </div>
+            @Html.HiddenFor(model => model.ZT) 
+        <div class="editor-label">
+           &nbsp;
+        </div>
+        <div class="editor-field">
+            &nbsp;
+        </div>         
+        <br style="clear: both;" />
+        <div class="editor-label photo">
+            @Html.LabelFor(model => model.GSJS)：
+        </div>
+        <div class="editor-field editor-width681 photo">
+            @Html.TextAreaFor(model => model.GSJS)
+            @Html.ValidationMessageFor(model => model.GSJS)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.JJDD)：
+        </div>
+        <div class="editor-field editor-width681">
+            @Html.TextBoxFor(model => model.JJDD, new { @class = "text-box single-line editor-width" })
+            @Html.ValidationMessageFor(model => model.JJDD)
+        </div>       
+        <br style="clear: both;" />
+        <div class="editor-label photo">
+            @Html.LabelFor(model => model.REMARK)：
+        </div>
+        <div class="editor-field editor-width681 photo">
+            @Html.TextAreaFor(model => model.REMARK)
+            @Html.ValidationMessageFor(model => model.REMARK)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DISTID)：
+        </div>
+        <div class="editor-field editor-width681">
+            @Html.DropDownListFor(model => model.DISTID, PSDDProject.Models.SysFieldModels.GetSysField("SysCommando", "distID"), "请选择")<span style="color:red">&nbsp;*</span>
+            @Html.ValidationMessageFor(model => model.DISTID)
+        </div>
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.GRADE)：
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.GRADE, PSDDProject.Models.SysFieldModels.GetSysField("SysCommando", "grade"), "请选择")
+        </div>*@   
+        
+        <div class="editor-label">
+            <input id="file_upload" name="file_upload" type="file" />
+        </div>
+        <div id="up" class="editor-field editor-field editor-width681">
+            <div id="fileQueue" >
+            </div>
+            @Html.HiddenFor(model => model.FileUploaderId)
+
+            @Html.HiddenFor(model => model.CREATEPERSON)
+            
+        </div>
+    </div>
+</fieldset>
+
+
+
+
+
+
+
+
+@Styles.Render("~/Res/jquery.uploadify-v2.1.4/uploadify.css")
+@Scripts.Render("~/Res/jquery.uploadify-v2.1.4/jquery.uploadify.v2.1.4.min.js")
+@Scripts.Render("~/Res/jquery.uploadify-v2.1.4/swfobject.js")
+
+<script type="text/javascript">
+    var changeFlag = false;
+    $(function () {
+       
+        $('#file_upload').uploadify({
+            'uploader': '../../Res/jquery.uploadify-v2.1.4/uploadify.swf',
+            'script': '/SysCommando/Upload',
+            // 'script': '../../Res/jquery.uploadify-v2.1.4/FileUploader.ashx',
+            'cancelImg': '../../Res/jquery.uploadify-v2.1.4/cancel.png',
+            'folder': '/up',
+            'buttonText': '点击上传附件',
+            'queueID': 'fileQueue',
+            'auto': true,
+            'multi': true,
+            'simUploadLimit': 5,
+            'onComplete': function (event, queueId, fileObj, response, data) {
+                var _list = $.parseJSON(response);
+                if (_list.FileUploaderId == '0') {
+                    alert('上传失败，请检查文件是否存在或者网络是否通畅');
+                    return;
+                }
+                var content = ""; //需要添加的内容
+                var hidden = document.getElementById('FileUploaderId'); //获取隐藏的控件
+                hidden.value += "^" + _list.FileUploaderId + "&" + fileObj.name;//为隐藏控件赋值
+
+                content += '<table  id="' + _list.FileUploaderId + '" class="deleteStyle"><tr><td><img src=@Url.Content("~/Images/deleteimge.png") title="点击删除"  alt="删除"    onclick=" deleteTable(' + "'" + _list.FileUploaderId + "'," + "'" + 'FileUploaderId' + "'" + ');" /></td><td>' + fileObj.name + '</td></tr></table>';
+                if (content != null) {
+                    $("#up").append(content);
+                }
+            }
+        });
+
+        $("#CREATEPERSON").val("@ViewData["userID"]");
+
+        //为每个文本框加一个onchange事件，发生改变修改flag。
+        $(".text-box").change(function () { changeFlag = true; });
+        $("textarea").change(function () { changeFlag = true; });
+        $("select").change(function () { changeFlag = true; });
+    });
+
+    function ajaxFrom(form, url) {
+
+        $.ajax({
+            url: url,
+            type: "Post",
+            data: $(form).serialize(),
+            dataType: "json",
+            success: function (data) {
+
+                var strs = new Array(); //定义一数组
+                strs = data.split(","); //字符分割
+                if (strs[0] == '创建成功') {
+                    if ($.messager) {
+                        // $.messager.defaults.ok = '请继续添加队员和设备信息';
+                        $.messager.defaults.ok = '留在当页';
+                        $.messager.defaults.cancel = '填加队员';
+
+                        $.messager.confirm('操作提示', strs[0], function (r) {
+
+                            $("#createBut").val("已创建");
+                            $("#createBut").attr("disabled", true);
+                            parent.$("#tjdID").val(strs[1]);
+
+                            if (!r) {
+                                //设置父页面
+                                parent.$('#tt').tabs('select', '队员基本情况');
+                            }
+                            else {
+
+                                //    resetAll();
+                            }
+
+                        });
+                    }
+                }
+                else {
+                    if ($.messager) {
+                        $.messager.defaults.ok = '调整';
+                        $.messager.defaults.cancel = '清空';
+
+                        $.messager.confirm('操作提示', data, function (r) {
+                            if (!r) {
+                                //清空所有的填入项（未完成）
+
+
+                            }
+                        });
+                    }
+                }
+                changeFlag = false;
+            }
+        });
+
+    }
+
+    function BackList() {
+
+        if (changeFlag) {
+            alert("离开前，请先保存修改");
+            return false;
+        }
+
+        parent.window.location.href = "http://" + window.location.host + "/SYSCOMMANDO/Index?mark=" + "@ViewData["markold"]";
+    }
+
+    function resetAll() {
+        $(".text-box").val("");
+        $("textarea").val("");
+        $("select").val("");
+    }
+</script>
+
+

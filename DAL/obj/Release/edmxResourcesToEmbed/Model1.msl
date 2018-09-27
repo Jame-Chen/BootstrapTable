@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AppModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="T_PUMPTRUCK">
+      <EntityTypeMapping TypeName="AppModel.T_PUMPTRUCK">
+        <MappingFragment StoreEntitySet="T_PUMPTRUCK">
+          <ScalarProperty Name="S_QX" ColumnName="S_QX" />
+          <ScalarProperty Name="S_PT_ID" ColumnName="S_PT_ID" />
+          <ScalarProperty Name="S_SPBH" ColumnName="S_SPBH" />
+          <ScalarProperty Name="S_PT_NAME" ColumnName="S_PT_NAME" />
+          <ScalarProperty Name="S_PZ" ColumnName="S_PZ" />
+          <ScalarProperty Name="S_PT_FLOW" ColumnName="S_PT_FLOW" />
+          <ScalarProperty Name="S_PT_LIFT" ColumnName="S_PT_LIFT" />
+          <ScalarProperty Name="N_PT_CLASS" ColumnName="N_PT_CLASS" />
+          <ScalarProperty Name="S_ADD" ColumnName="S_ADD" />
+          <ScalarProperty Name="S_PT_AREA" ColumnName="S_PT_AREA" />
+          <ScalarProperty Name="S_SYSCOMMANDOID" ColumnName="S_SYSCOMMANDOID" />
+          <ScalarProperty Name="S_PT_CONTACTS" ColumnName="S_PT_CONTACTS" />
+          <ScalarProperty Name="S_PT_CONTACTPHONE" ColumnName="S_PT_CONTACTPHONE" />
+          <ScalarProperty Name="S_BZ" ColumnName="S_BZ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

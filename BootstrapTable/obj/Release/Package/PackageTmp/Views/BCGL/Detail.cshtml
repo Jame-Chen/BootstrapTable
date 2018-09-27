@@ -1,0 +1,145 @@
+﻿@model DAL.T_PUMPTRUCK
+@{
+    ViewBag.Title = "泵车详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section styles{
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrapTable/css/bootstrap-table.css" rel="stylesheet" />
+    <style>
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .mt
+        {
+            margin-top: 15px;
+        }
+
+        .field-validation-error
+        {
+            color: red;
+        }
+            textarea
+        {
+            height:80px!important;
+        }
+    </style>
+}
+@using (Ajax.BeginForm("edt", "bcgl", new AjaxOptions { HttpMethod = "post", OnSuccess = "success" }, new { @class = "form-horizontal" }))
+{
+    <div class="form-group mt">
+        @Html.LabelFor(model => model.S_QX, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_QX, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_QX)
+        </div>
+        @Html.LabelFor(model => model.S_PT_NAME, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_PT_NAME, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_PT_NAME)
+        </div>
+        @Html.LabelFor(model => model.S_PZ, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_PZ, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_PZ)
+        </div>
+    </div>
+    
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.S_PT_FLOW, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_PT_FLOW, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_PT_FLOW)
+        </div>
+        @Html.LabelFor(model => model.S_PT_LIFT, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_PT_LIFT, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_PT_LIFT)
+        </div>
+        @Html.LabelFor(model => model.N_PT_CLASS, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.N_PT_CLASS, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.N_PT_CLASS)
+        </div>
+    </div>
+    
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.S_SPBH, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_SPBH, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_SPBH)
+        </div>
+        @Html.LabelFor(model => model.S_ADD, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-6">
+            @Html.TextBoxFor(model => model.S_ADD, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_ADD)
+        </div>
+
+    </div>
+    
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.S_SYSCOMMANDOID, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_SYSCOMMANDOID, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_SYSCOMMANDOID)
+        </div>
+        @Html.LabelFor(model => model.S_PT_CONTACTS, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_PT_CONTACTS, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_PT_CONTACTS)
+        </div>
+        @Html.LabelFor(model => model.S_PT_CONTACTPHONE, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-2">
+            @Html.TextBoxFor(model => model.S_PT_CONTACTPHONE, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_PT_CONTACTPHONE)
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.S_PT_AREA, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-10">
+            @Html.TextAreaFor(model => model.S_PT_AREA, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_PT_AREA)
+        </div>
+
+    </div>
+    
+    <div class="form-group">
+        @Html.LabelFor(model => model.S_BZ, new { @class = "col-xs-2 control-label text-right" })
+        <div class="col-xs-10">
+            @Html.TextAreaFor(model => model.S_BZ, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.S_BZ)
+        </div>
+
+    </div>
+    <div class="form-group">
+        <div class="text-center">
+            @Html.HiddenFor(model=>model.S_PT_ID)
+         
+             <button type="button" class="btn btn-warning" onclick="back()"><span class="glyphicon glyphicon-remove" aria-hidden="true" ></span>&nbsp;&nbsp;取消</button>
+        </div>
+    </div>
+}
+
+@section scripts{
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/bootstrapTable/js/bootstrap-table.min.js"></script>
+    <script src="~/bootstrapTable/js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="~/layer/layer.js"></script>
+    <script>
+        $(function () {
+            $("input,textarea").attr("readonly", true);
+        })
+     
+
+        function back() {
+            parent.layer.closeAll();
+        }
+    </script>
+}

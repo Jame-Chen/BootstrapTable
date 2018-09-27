@@ -1,0 +1,396 @@
+﻿@model DAL.T_PUMPTRUCK
+
+@{
+    ViewBag.Title = "泵车管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section styles{
+    <link href="~/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrapTable/css/bootstrap-table.css" rel="stylesheet" />
+    <style>
+        *
+        {
+            padding: 0;
+            margin: 0;
+        }
+
+
+        .mt
+        {
+            margin-top: 10px;
+        }
+    </style>
+}
+
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="col-xs-12 mt">
+            <div class="form-group">
+                <label class="col-xs-2 control-label text-right">所属区：</label>
+                <div class="col-xs-2">
+                    <select id="S_QX" class="form-control">
+                        <option value="">--请选择--</option>
+                        <option value="崇明区">崇明区</option>
+                        <option value="长宁区">长宁区</option>
+                        <option value="市级">市级</option>
+                        <option value="嘉定区">嘉定区</option>
+                        <option value="闵行区">闵行区</option>
+                        <option value="宝山区">宝山区</option>
+                        <option value="普陀区">普陀区</option>
+                        <option value="静安区">静安区</option>
+                        <option value="青浦区">青浦区</option>
+                        <option value="虹口区">虹口区</option>
+                        <option value="奉贤区">奉贤区</option>
+                        <option value="金山区">金山区</option>
+                        <option value="杨浦区">杨浦区</option>
+                        <option value="徐汇区">徐汇区</option>
+                        <option value="黄浦区">黄浦区</option>
+                        <option value="松江区">松江区</option>
+                        <option value="浦东新区">浦东新区</option>
+                        <option value="市排水公司">市排水公司</option>
+                    </select>
+                </div>
+                <label class="col-xs-2 control-label text-right">车牌号：</label>
+                <div class="col-xs-2">
+                    <input type="text" id="S_PZ" class="form-control" value="" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div></div>
+    <div class="row-fluid">
+        <div class="col-xs-12 mt">
+            <div class="form-group">
+                <label class="col-xs-2 control-label text-right">编号：</label>
+                <div class="col-xs-2">
+                    <input type="text" id="S_PT_ID" class="form-control" value="" />
+                </div>
+                <label class="col-xs-2 control-label text-right">抢险状态：</label>
+                <div class="col-xs-2">
+                    <select id="QXZT" class="form-control">
+                        <option value="">--请选择--</option>
+                        <option value="1">驻点保障</option>
+                        <option value="2">任务执行</option>
+                        <option value="3">集结待命</option>
+                        <option value="4">在线泵车</option>
+                    </select>
+                </div>
+                <div class="col-xs-4">
+                    <a href="#" class=" btn btn-info" onclick="query();"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;&nbsp;查询</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid ">
+        <div class="col-xs-12 mt">
+            <a class="btn btn-primary" href="#" onclick="create();"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>创建</a>
+            <a class="btn btn-warning" href="#" onclick="edt();"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改</a>
+            <a class="btn btn-danger" href="#" onclick="del();"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除</a>
+            <a class="btn btn-info" href="#" onclick="detail();"><span class="glyphicon glyphicon-th" aria-hidden="true"></span>详细</a>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="col-xs-12 mt">
+
+            <table id="table-javascript">
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/bootstrapTable/js/bootstrap-table.min.js"></script>
+    <script src="~/bootstrapTable/js/bootstrap-table-zh-CN.min.js"></script>
+    <script src="~/layer/layer.js"></script>
+    <script>
+        var $table;
+        $(function () {
+            initTable();
+        })
+
+        function initTable() {
+
+
+            $table = $('#table-javascript').bootstrapTable({
+
+                //method: 'get',<br><br>
+                method: 'post',
+                contentType: "application/x-www-form-urlencoded",//必须的，操你大爷！！！！
+
+                url: "/bcgl/GetBCGLList",
+
+                height: $(window).height() - 142,
+
+                striped: true,
+
+                pagination: true,
+
+                singleSelect: false,
+
+                pageSize: 50,
+
+                pageList: [10, 50, 100, 200, 500],
+
+                search: false, //不显示 搜索框
+
+                showColumns: false, //不显示下拉框（选择显示的列）
+
+                sidePagination: "server", //服务端请求
+
+                queryParams: queryParams,
+
+                minimunCountColumns: 2,
+
+                columns: [{
+
+                    field: 'state',
+
+                    checkbox: true
+
+                }, {
+
+                    field: 'S_QX',
+
+                    title: '所属区',
+
+                    width: 100,
+
+                    align: 'center',
+
+                    valign: 'middle',
+
+                    sortable: true
+
+                    // formatter: nameFormatter
+
+                }, {
+
+                    field: 'S_PZ',
+
+                    title: '车牌号',
+
+                    width: 40,
+
+                    align: 'left',
+
+                    valign: 'top',
+
+                    sortable: true,
+
+                    //  formatter: sexFormatter,
+
+                    //    sorter: priceSorter
+
+                }, {
+
+                    field: 'S_PT_NAME',
+
+                    title: '车辆名称',
+
+                    width: 80,
+
+                    align: 'left',
+
+                    valign: 'top',
+
+                    sortable: true
+
+                }, {
+
+                    field: 'S_SPBH',
+
+                    title: '视频编号',
+
+                    width: 80,
+
+                    align: 'middle',
+
+                    valign: 'top',
+
+                    sortable: true
+
+                }, {
+
+                    field: 'S_PT_FLOW',
+
+                    title: '泵车流量(m³/h)',
+
+                    width: 180,
+
+                    align: 'right',
+
+                    valign: 'top',
+
+                    sortable: true
+
+                }, {
+
+                    field: 'S_PT_LIFT',
+
+                    title: '泵车扬程(m)',
+
+                    width: 100,
+
+                    align: 'right',
+
+                    valign: 'top',
+
+                    sortable: true
+
+                }, {
+
+                    field: 'S_SYSCOMMANDOID',
+
+                    title: '突击队',
+
+                    width: 100,
+
+                    align: 'left',
+
+                    valign: 'top',
+
+                    sortable: true
+
+                }, {
+
+                    field: 'S_ADD',
+
+                    title: '停放地址',
+
+                    width: 100,
+
+                    align: 'center',
+
+                    valign: 'middle'
+
+                    //    formatter: operateFormatter,
+
+                    //   events: operateEvents
+
+                }],
+
+                onLoadSuccess: function () {
+
+
+
+                },
+
+                onLoadError: function () {
+
+                    mif.showErrorMessageBox("数据加载失败！");
+
+                }
+
+            });
+
+        }
+
+        //传递的参数
+
+        function queryParams(params) {
+
+            return {
+
+                rows: params.pageSize,
+
+                page: params.pageNumber,
+
+                S_QX: $("#S_QX option:selected").val(),
+
+                S_PZ: $("#S_PZ").val(),
+
+                S_PT_ID: $("#S_PT_ID").val(),
+
+                QXZT: $("#QXZT option:selected").val()
+
+            };
+
+        }
+
+
+        function query() {
+            $table.bootstrapTable('refresh');
+        }
+
+        function create() {
+            layer.open({
+                type: 2,
+                title: '新增泵车',
+                shadeClose: true,
+                shade: 0.8,
+                area: ['90%', '90%'],
+                content: '/bcgl/add' //iframe的url
+            });
+        }
+
+        function edt() {
+            var row = $table.bootstrapTable('getSelections');
+            if (row.length == 1) {
+
+                layer.open({
+                    type: 2,
+                    title: '修改泵车',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['90%', '90%'],
+                    content: '/bcgl/edt?S_PT_ID=' + row[0].S_PT_ID //iframe的url
+                });
+            } else {
+                layer.msg("请选择一行!", { icon: 2 });
+            }
+        }
+
+
+        function del() {
+            var row = $table.bootstrapTable('getSelections');
+            if (row.length > 0) {
+                layer.confirm('你确定要删除吗？', { btn: ['确定', '取消'] }, function () {
+
+                    var arr = [];
+                    for (var i = 0; i < row.length; i++) {
+                        arr.push(row[i].S_PT_ID);
+                    }
+
+                    $.ajax({
+                        type: "post",
+                        url: "/bcgl/Del?iditems=" + JSON.stringify(arr),
+                        dataType: "json",
+                        success: function (data) {
+                            if (data.code == "1") {
+                                layer.msg(data.msg, { icon: 6 });
+                                $table.bootstrapTable('refresh');
+                            } else {
+                                layer.msg(data.msg, { icon: 2 });
+                            }
+                        }
+                    })
+                })
+            } else {
+                layer.msg("请选择一行!", { icon: 2 });
+            }
+        }
+
+
+        function detail() {
+            var row = $table.bootstrapTable('getSelections');
+            if (row.length == 1) {
+                layer.open({
+                    type: 2,
+                    title: '泵车详情',
+                    shadeClose: true,
+                    shade: 0.8,
+                    area: ['90%', '90%'],
+                    content: '/bcgl/Detail?S_PT_ID=' + row[0].S_PT_ID //iframe的url
+                });
+            } else {
+                layer.msg("请选择一行!", { icon: 2 });
+            }
+        }
+    </script>
+}

@@ -1,0 +1,9 @@
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\bin\Debug\DAL.dll.config
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\bin\Debug\DAL.dll
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\bin\Debug\DAL.pdb
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\bin\Debug\EntityFramework.dll
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\bin\Debug\EntityFramework.xml
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\obj\Debug\DAL.dll
+d:\我的文档\visual studio 2012\Projects\BootstrapTable\DAL\obj\Debug\DAL.pdb
